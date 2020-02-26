@@ -12,15 +12,14 @@ Steps - Iteratively or Recursively
 - Starting at the root
     - Check if there is a root. If not, the root becomes that new node!
     - If there is a root, check if the value of the new node is greater than or less than the value of the root
-    - **If it is greater**
-        - Check to see if there's a node to the right
-            - If there is, move to that node and repeat these steps
-            - If there is not, add that ndoe as the right property
     - **If it is less**
         - Check to see if there's a node to the left
             - If there is, move that node and repeat these steps
             - If there is not, add that node as the left property
-
+    - **If it is greater**
+        - Check to see if there's a node to the right
+            - If there is, move to that node and repeat these steps
+            - If there is not, add that ndoe as the right property
 """
 
 
@@ -59,25 +58,24 @@ class BinarySearchTree:
                 # If so, recurse
                 self.right.insert(value)
 
-        # elif value >= self.value:
-        #     # Is there a node to the right?
-        #     if self.right is not None:
-        #         # If not, add that node as the left property
-        #         self.right = bst
-        #     else:
-        #         print('theres a right')
-        #         # If so, recurse
-        #         self.right.insert(value)
-
-        # print('value', value)
-        # print('self.value', self.value)
-
     # Return True if the tree contains the value
     # False if it does not
-    def contains(self, target):
-        pass
 
+    def contains(self, target):
+        if self.value == target:
+            return True
+        if target < self.value:
+            if not self.left:
+                return False
+            else:
+                return self.left.contains(target)
+        else:
+            if not self.right:
+                return False
+            else:
+                return self.right.contains(target)
     # Return the maximum value found in the tree
+
     def get_max(self):
         pass
 
@@ -118,12 +116,12 @@ class BinarySearchTree:
 bst = BinarySearchTree(1)
 bst.insert(8)
 bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
 # bst.print_values()
 # bst.in_order_print(bst)
-# print("\nContains :", bst.contains(4))  # true
+print("\nContains :", bst.contains(4))  # true
