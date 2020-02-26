@@ -1,7 +1,27 @@
+from dll_stack import Stack
+from dll_queue import Queue
 import sys
 sys.path.append('../queue_and_stack')
-from dll_queue import Queue
-from dll_stack import Stack
+
+"""
+PLAN
+
+Use recursion
+Steps - Iteratively or Recursively
+
+- Starting at the root
+    - Check if there is a root. If not, the root becomes that new node!
+    - If there is a root, check if the value of the new node is greater than or less than the value of the root
+    - **If it is greater**
+        - Check to see if there's a node to the right
+            - If there is, move to that node and repeat these steps
+            - If there is not, add that ndoe as the right property
+    - **If it is less**
+        - Check to see if there's a node to the left
+            - If there is, move that node and repeat these steps
+            - If there is not, add that node as the left property
+
+"""
 
 
 class BinarySearchTree:
@@ -12,7 +32,45 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # print("\ninserting value:", value)
+        # print("\nstarting values:", "val:", self.value,
+        #       "left:", self.left, "right:", self.right)
+
+        # # If value is the same as the root, return undefined
+        # if value == self.value:
+        #     return None
+
+        bst = BinarySearchTree(value)
+        # If value is less than self.value
+        if value < self.value:
+            # Is there a node to the left?
+            if self.left is None:
+                self.left = bst
+            else:
+                # If so, recurse
+                self.left.insert(value)
+        # If value is greater than self.value
+        else:
+            # Is there a node to the right?
+            if self.right is None:
+                # If not, add that node as the left property
+                self.right = bst
+            else:
+                # If so, recurse
+                self.right.insert(value)
+
+        # elif value >= self.value:
+        #     # Is there a node to the right?
+        #     if self.right is not None:
+        #         # If not, add that node as the left property
+        #         self.right = bst
+        #     else:
+        #         print('theres a right')
+        #         # If so, recurse
+        #         self.right.insert(value)
+
+        # print('value', value)
+        # print('self.value', self.value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -55,3 +113,17 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+bst = BinarySearchTree(1)
+bst.insert(8)
+bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
+
+# bst.print_values()
+# bst.in_order_print(bst)
+# print("\nContains :", bst.contains(4))  # true
