@@ -90,7 +90,7 @@ class BinarySearchTree:
 3) if right, call it
 returns - two types of recursion problems. One goes outward and does something along the way - could be calling a function, and when it gets to the end it's done. Can tell if its trying to DO something or create something. In that case, don't need a return cb don't need any data. BUT if the spec says return, we need to return our recursive calls instead of just calling
 
-breadth first - queue- FIFO 
+breadth first - queue- FIFO
 depth first - stack
 
     """
@@ -115,34 +115,34 @@ depth first - stack
         if node.right:
             node.in_order_print(node.right)
 
-        # Print the value of every node, starting with the given node,
-        # in an iterative breadth first traversal
 
-    # def bft_print(self, node):
-        # print('what is the node', node)
-        # print('what is self', self)
-        # # create node with cur value
-        # # data is what we return at end and queue is empty array
-        # node = self.value
-        # data = []
-        # queue = []
-        # # append node in queue
-        # queue.append(node)
+# Print the value of every node, starting with the given node,
+# in an iterative breadth first traversal
 
-        # # if there is ANYTHING in the queue,
-        # while(len(queue)):
-        #     # remove something from beginning of queue and assign node to it
-        #     node = queue.pop(0)
-        #     print('this is the node', node
-        #     )
-        #     # take node and append to data list
-        #     data.append(node.value)
-        #     # is there a left or right? if so push it
-        #     if node.left:
-        #         queue.append(node.left)
-        #     if node.right:
-        #         queue.append(node.right)
-        # return data
+# We need to create a Queue using our imported Queue class and then use methods on that class
+# methods - len, enqueue, and dequeue
+#    * `enqueue` should add an item to the back of the queue.
+#    * `dequeue` should remove and return an item from the front of the queue.
+#    * `len` returns the number of items in the queue.
+
+
+    def bft_print(self, node):
+
+        # create queue using import
+        self.queue = Queue()
+        # add node to back of queue
+        self.queue.enqueue(node)
+        # if there is ANYTHING in the queue,
+
+        while(self.queue.len() is not 0):
+            # remove something from beginning of queue and assign it to node
+            node = self.queue.dequeue()
+            # is there a left or right?   # if so, remove and return item from front of queue
+            if node.left:
+                self.queue.enqueue(node.left)
+            if node.right:
+                self.queue.enqueue(node.right)
+            print(node.value)
 
         # Print the value of every node, starting with the given node,
         # in an iterative depth first traversal
@@ -176,7 +176,6 @@ depth first - stack
 # print("\nContains :", bst.contains(4))  # true
 
 tree = BinarySearchTree(10)
-tree.insert(10)
 tree.insert(6)
 tree.insert(15)
 tree.insert(3)
@@ -184,7 +183,9 @@ tree.insert(8)
 tree.insert(20)
 
 # should be 3, 6, 8, 10, 15, 20
+print('printing depth in order')
 tree.in_order_print(tree)
 
-# print('printing list')
-# tree.bft_print(2)
+# should be 10, 6, 15, 3, 8, 20
+print('printing breadth first')
+tree.bft_print(tree)
