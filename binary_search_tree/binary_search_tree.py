@@ -79,7 +79,7 @@ class BinarySearchTree:
         # If there's nothing to the right, return self.value
         if self.right is None:
             return self.value
-        #Else, recurse
+        # Else, recurse
         return self.right.get_max()
 
     # Call the function `cb` on the value of each node
@@ -88,8 +88,10 @@ class BinarySearchTree:
 1) call cb on self.value
 2) if left, call it
 3) if right, call it
-returns - two types of recursion problems. One goes outward and does something along the way - could be calling a function, and when it gets to the end it's done. Can tell if its trying to DO something or create something. In that case, don't need a return cb don't need any data. 
+returns - two types of recursion problems. One goes outward and does something along the way - could be calling a function, and when it gets to the end it's done. Can tell if its trying to DO something or create something. In that case, don't need a return cb don't need any data. BUT if the spec says return, we need to return our recursive calls instead of just calling
 
+breadth first - queue- FIFO 
+depth first - stack
 
     """
 
@@ -107,15 +109,44 @@ returns - two types of recursion problems. One goes outward and does something a
     # Hint:  Use a recursive, depth first traversal
 
     def in_order_print(self, node):
-        pass
+        if node.left:
+            node.in_order_print(node.left)
+        print(node.value)
+        if node.right:
+            node.in_order_print(node.right)
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative breadth first traversal
-    def bft_print(self, node):
-        pass
+        # Print the value of every node, starting with the given node,
+        # in an iterative breadth first traversal
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative depth first traversal
+    # def bft_print(self, node):
+        # print('what is the node', node)
+        # print('what is self', self)
+        # # create node with cur value
+        # # data is what we return at end and queue is empty array
+        # node = self.value
+        # data = []
+        # queue = []
+        # # append node in queue
+        # queue.append(node)
+
+        # # if there is ANYTHING in the queue,
+        # while(len(queue)):
+        #     # remove something from beginning of queue and assign node to it
+        #     node = queue.pop(0)
+        #     print('this is the node', node
+        #     )
+        #     # take node and append to data list
+        #     data.append(node.value)
+        #     # is there a left or right? if so push it
+        #     if node.left:
+        #         queue.append(node.left)
+        #     if node.right:
+        #         queue.append(node.right)
+        # return data
+
+        # Print the value of every node, starting with the given node,
+        # in an iterative depth first traversal
+
     def dft_print(self, node):
         pass
 
@@ -131,15 +162,29 @@ returns - two types of recursion problems. One goes outward and does something a
         pass
 
 
-bst = BinarySearchTree(1)
-bst.insert(8)
-bst.insert(5)
-bst.insert(7)
-bst.insert(6)
-bst.insert(3)
-bst.insert(4)
-bst.insert(2)
+# bst = BinarySearchTree(1)
+# bst.insert(8)
+# bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
 
 # bst.print_values()
 # bst.in_order_print(bst)
-print("\nContains :", bst.contains(4))  # true
+# print("\nContains :", bst.contains(4))  # true
+
+tree = BinarySearchTree(10)
+tree.insert(10)
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
+
+# should be 3, 6, 8, 10, 15, 20
+tree.in_order_print(tree)
+
+# print('printing list')
+# tree.bft_print(2)
