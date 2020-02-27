@@ -83,12 +83,18 @@ class BinarySearchTree:
     # You may use a recursive or iterative approach
 
     def for_each(self, cb):
-        pass
+        # If there's a left, call for_each and if there's a right, call for_each.
+        if self.left:
+            self.left.for_each(cb)
+        if self.right:
+            self.right.for_each(cb)
+        return cb(self.value)
 
     # DAY 2 Project -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
+
     def in_order_print(self, node):
         pass
 
