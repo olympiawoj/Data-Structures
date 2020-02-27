@@ -84,14 +84,22 @@ class BinarySearchTree:
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
+    """
+1) call cb on self.value
+2) if left, call it
+3) if right, call it
+returns - two types of recursion problems. One goes outward and does something along the way - could be calling a function, and when it gets to the end it's done. Can tell if its trying to DO something or create something. In that case, don't need a return cb don't need any data. 
+
+
+    """
 
     def for_each(self, cb):
+        cb(self.value)
         # If there's a left, call for_each and if there's a right, call for_each.
         if self.left:
             self.left.for_each(cb)
         if self.right:
             self.right.for_each(cb)
-        return cb(self.value)
 
     # DAY 2 Project -----------------------
 
